@@ -4,7 +4,7 @@ from flask import Flask
 from flask import jsonify
 from flask import render_template
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='./template')
 
 @app.route('/')
 def index():
