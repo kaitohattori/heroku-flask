@@ -1,1 +1,1 @@
-web: gunicorn weather:app --log-file -
+web: python weather.py
