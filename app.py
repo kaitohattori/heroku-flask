@@ -95,6 +95,42 @@ def cal_min():
     }
     return jsonify(response), 201
 
+@app.route('/sort/up', methods=['POST'])
+def sort_up():
+    request_json = request.json
+
+    required = ['values']
+    if not all(k in request_json for k in required):
+        return 'Missing values', 400
+
+    values = request_json['values']
+
+    val_sort_up = sorted(values)
+
+    response = {
+        'values': values,
+        'up_sort_values': val_sort_up
+    }
+    return jsonify(response), 201
+
+@app.route('/sort/down', methods=['POST'])
+def sort_down():
+    request_json = request.json
+
+    required = ['values']
+    if not all(k in request_json for k in required):
+        return 'Missing values', 400
+
+    values = request_json['values']
+
+    val_sort_down = sorted(values, reverse=True)
+
+    response = {
+        'values': values,
+        'down_sort_values': val_sort_down
+    }
+    return jsonify(response), 201
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
